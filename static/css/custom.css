@@ -1,0 +1,19 @@
+.top-nav-collapse {
+  background-color: #24355C;
+}
+@media (max-width: 768px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: #24355C;
+  }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: #24355C;
+  }
+}
+@font-face {
+        font-family: "Vazir FD";
+
+        src:local("Vazir FD"),
+        url('/static/font/vazir/Vazir-FD.ttf') format('truetype');
+    }

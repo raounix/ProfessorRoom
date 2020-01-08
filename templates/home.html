@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <!-- Material Design for Bootstrap -->
+    <link href="{% static 'css/mdb.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/all.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static  'css/custom.css' %}" rel="stylesheet" type="text/css">
+    <!-- jQuery -->
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<body style="font-family: 'Vazir FD'">
+
+    <style>
+
+    </style>
+    <!-- Font Awesome -->
+    <!-- Bootstrap -->
+    {% load static %}
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+
+    <!-- Popper.js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+    <!-- Material Design for Bootstrap -->
+    <script src="{% static 'js/mdb.js' %}"></script>
+    <style>
+        html,
+        body,
+        header,
+        .jarallax {
+            height: 700px;
+        }
+        
+        @media (max-width: 740px) {
+            html,
+            body,
+            header,
+            .jarallax {
+                height: 100vh;
+            }
+        }
+        
+        @media (min-width: 800px) and (max-width: 850px) {
+            html,
+            body,
+            header,
+            .jarallax {
+                height: 100vh;
+            }
+        }
+        
+        @media (min-width: 560px) and (max-width: 650px) {
+            header .jarallax h1 {
+                margin-bottom: 1.5rem !important;
+            }
+            header .jarallax h5 {
+                margin-bottom: 1.5rem !important;
+            }
+        }
+        
+        .top-nav-collapse {
+            background-color: #3E4551!important;
+        }
+        
+        .navbar:not(.top-nav-collapse) {
+            background: transparent!important;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #3E4551!important;
+            }
+        }
+        
+        @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #3f51b5!important;
+            }
+        }
+        
+        h5 {
+            letter-spacing: 3px;
+        }
+    </style>
+    <!--Navbar-->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark stylish-color-dark fixed-top scrolling-navbar">
+            <a class="navbar-brand order-md-last" href="#">سیستم یکپارچه‌ی خدمات رفاهی</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav  ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">تماس با ما<i class="fas fa-address-book"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about">درباره ما<i class="fas fa-info-circle"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">قوانین<i class="fas fa-tasks"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm">ثبت نام<i class="fas fa-user-plus"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm">ورود<i class="fas fa-unlock"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--Modal: Login / Register Form-->
+        <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog cascading-modal" role="document">
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Modal cascading tabs-->
+                    <div class="modal-c-tabs">
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
+              ورود</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i>
+              ثبت‌نام</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panels -->
+                        <div class="tab-content">
+                            <!--Panel 7-->
+                            <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+                                <!--Body-->
+                                <div class="modal-body mb-1">
+                                    <div class="md-form form-sm mb-5">
+                                        <i class="fas fa-envelope prefix"></i>
+                                        <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                                        <label dir="rtl" data-error="wrong" data-success="right" for="modalLRInput10">ایمیل شما</label>
+                                    </div>
+
+                                    <div class="md-form form-sm mb-4">
+                                        <i class="fas fa-lock prefix"></i>
+                                        <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
+                                        <label data-error="wrong" data-success="right" for="modalLRInput11">پسورد شما</label>
+                                    </div>
+                                    <div class="text-center mt-2">
+                                        <button class="btn btn-info">ورود<i class="fas fa-sign-in ml-1"></i></button>
+                                    </div>
+                                </div>
+                                <!--Footer-->
+                                <div class="modal-footer">
+                                    <div class="options text-center text-md-right mt-1">
+                                        <p>عضو نیستید؟ <a href="#" class="blue-text">ثبت‌نام کنید </a></p>
+                                        <p> پسوردتان‌را <a href="#" class="blue-text">فراموش کردید؟ </a></p>
+                                    </div>
+                                    <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">بستن</button>
+                                </div>
+
+                            </div>
+                            <!--/.Panel 7-->
+
+                            <!--Panel 8-->
+                            <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+                                <!--Body-->
+                                <div class="modal-body">
+                                    <form method="post" id="register_form" action="/signup/">
+                                        {% csrf_token %}
+                                        <div class="md-form form-sm mb-5">
+                                            <i class="fas fa-envelope prefix"></i>
+                                            <input type="email" id="modalLRInput12" class="form-control form-control-sm validate" name="email">
+                                            <label data-error="wrong" data-success="right" for="modalLRInput12">ایمیل شما</label>
+                                        </div>
+
+                                        <div class="md-form form-sm mb-5">
+                                            <i class="fas fa-lock prefix"></i>
+                                            <input type="password" id="modalLRInput13" class="form-control form-control-sm validate" name="password1">
+                                            <label data-error="wrong" data-success="right" for="modalLRInput13">پسورد دلخواه شما</label>
+                                        </div>
+
+                                        <div class="md-form form-sm mb-4">
+                                            <i class="fas fa-lock prefix"></i>
+                                            <input type="password" id="modalLRInput14" class="form-control form-control-sm validate" name="password2">
+                                            <label data-error="wrong" data-success="right" for="modalLRInput14">تکرار پسورد دلخواه شما</label>
+                                        </div>
+
+                                        <div class="text-center form-sm mt-2">
+                                            <button class="btn btn-info">ثبت‌نام<i class="fas fa-sign-in ml-1" onclick="commit()"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--Footer-->
+                                <div class="modal-footer">
+                                    <div class="options text-right">
+                                        <p class="pt-1">از قبل عضو هستید؟ <a href="#" class="blue-text">وارد شوید</a></p>
+                                    </div>
+                                    <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">بستن</button>
+                                </div>
+                            </div>
+                            <!--/.Panel 8-->
+                        </div>
+
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+
+        </div>
+        <div id="home" class="view hm-black-strong-1 jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url({% static '/img/hotel_image.jpg'%})">
+            <div class="mask rgba-stylish-light">
+                <div class="container h-100 d-flex justify-content-center align-items-center">
+                    <div class="row smooth-scroll">
+                        <div class="col-md-12 text-center white-text">
+                            <div class="wow fadeInDown" data-wow-delay="0.2s">
+                                <h1 class="white-text display-3 font-up font-bold">مجتمع رفاهی دانشگاه حکیم سبزواری</h1>
+                                <div class="row">
+                                    <div class="col-md-12 div-color">
+                                        <div class="divider-new">
+                                            <i class="fa fa-globe fa-3x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 class="font-up white-text mb-4">حس خونه</h2>
+                                <a href="#rooms" class="btn  btn-rounded" data-offset="100" style="background-color:#2BBBAD">خوش اومدید</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="photo1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-photo" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header d-block text-center">
+                        <h4 class="modal-title" id="myModalLabel">Social Area</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                        <!--Featured image-->
+                        <div class="">
+                            <img src="{% static '/img/conference_room.JPG' %}" class="img-fluid">
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    </div>
+                </div>
+                <!--/Content-->
+            </div>
+        </div>
+        <!--/Modal 1-->
+
+        <!--Modal 2-->
+        <div class="modal fade" id="photo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-photo" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header d-block text-center">
+                        <h4 class="modal-title" id="myModalLabel">Shared Rooms</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                        <!--Featured image-->
+                        <div class="">
+                            <img src="{% static '/img/bedroom.JPG' %}" class="img-fluid">
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    </div>
+                </div>
+                <!--/Content-->
+            </div>
+        </div>
+        <!--/Modal 2-->
+
+        <!--Modal 3-->
+        <div class="modal fade" id="photo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-photo" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header d-block text-center">
+                        <h4 class="modal-title" id="myModalLabel">Bathrooms</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                        <!--Featured image-->
+                        <div class="">
+                            <img src="{% static '/img/eatingroom.JPG' %}" class="img-fluid">
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    </div>
+                </div>
+                <!--/Content-->
+            </div>
+        </div>
+        <!--/Modal 3-->
+
+        <!--Modal 4-->
+        <div class="modal fade" id="photo4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-photo" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header d-block text-center">
+                        <h4 class="modal-title" id="myModalLabel">Double Bed Room</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                        <!--Featured image-->
+                        <div class="">
+                            <img src="{% static '/img/outerview.JPG' %}" class="img-fluid">
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    </div>
+                </div>
+                <!--/Content-->
+            </div>
+        </div>
+        <!--/Modal 4-->
+
+        <!--Modal 5-->
+        <div class="modal fade" id="photo5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-photo" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header d-block text-center">
+                        <h4 class="modal-title" id="myModalLabel">Twin Bed Room</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                        <!--Featured image-->
+                        <div class="">
+                            <img src="{% static '/img/accessories.JPG' %}" class="img-fluid">
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    </div>
+                </div>
+                <!--/Content-->
+            </div>
+        </div>
+        <!--/Modal 5-->
+
+        <!--Modal 6-->
+        <div class="modal fade" id="photo6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-photo" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header d-block text-center">
+                        <h4 class="modal-title" id="myModalLabel">Shared Kitchen</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                        <!--Featured image-->
+                        <div class="">
+                            <img src="{% static 'img/total_view.JPG' %}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                    </div>
+                </div>
+                <!--/Content-->
+            </div>
+        </div>
+        <!--/Modal 6-->
+    </header>
+    <main>
+        <div class="container">
+
+            <!--Section: Rooms Prestentation-->
+            <section id="rooms" class="section mt-5">
+
+                <!--Secion heading-->
+                <h1 class="text-center font-up font-bold mt-5 mb-3 pt-5 wow fadeIn" data-wow-delay="0.2s">گالری تصاویر</h1>
+
+                <!--Section description-->
+                <p class="text-center font-up pb-5 mb-4 font-bold wow fadeIn" data-wow-delay="0.2s">.با خدمات ما آشنا شوید</p>
+
+                <!--First row-->
+                <div class="row text-center mb-2">
+
+                    <!--First column-->
+                    <div class="col-lg-4 col-md-12 pb-1 wow fadeIn" data-wow-delay="0.4s">
+
+                        <!--Featured image-->
+                        <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo1">
+                            <img src="{% static '/img/conference_room.JPG' %}" class="img-thumbnail">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+
+                        <!--Excerpt-->
+                        <div class="card-body">
+                            <h3 class="mt-1 mb-2">اتاق کنفرانس</h3>
+                            <p>یکی از بهترین محل‌ها جهت گردهمایی و کنفرانس بدون مزاحمت و دارای تجهیزات لازم</p>
+                        </div>
+
+                    </div>
+                    <!--/First column-->
+
+                    <!--Second column-->
+                    <div class="col-lg-4 col-md-6 pb-1 wow fadeIn" data-wow-delay="0.4s">
+
+                        <!--Featured image-->
+                        <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo2">
+                            <img src="{% static '/img/bedroom.JPG' %}" class="img-thumbnail">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+
+                        <!--Excerpt-->
+                        <div class="card-body">
+                            <h3 class="mt-1 mb-2">اتاق خواب</h3>
+                            <p>تخت خواب‌های راحت که احساس می‌کنید در خانه خودتان اقامت دارید و بهترین کیفیت خواب را خواهید داشت</p>
+                        </div>
+
+                    </div>
+                    <!--/Second column-->
+
+                    <!--Third column-->
+                    <div class="col-lg-4 col-md-6 pb-1 wow fadeIn" data-wow-delay="0.4s">
+
+                        <!--Featured image-->
+                        <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo3">
+                            <img src="{% static '/img/eatingroom.JPG' %}" class="img-thumbnail">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+
+                        <!--Excerpt-->
+                        <div class="card-body">
+                            <h3 class="mt-1 mb-2">ِغذاخوری</h3>
+                            <p>مجهز به بهترین غذاخوری در سطح شهر با غذاهای متنوع و خوش طعم و آشپزان مجرب</p>
+                        </div>
+
+                    </div>
+                    <!--/Third column-->
+
+                </div>
+                <!--/First row-->
+
+                <!--Second row-->
+                <div class="row text-center">
+
+                    <!--First column-->
+                    <div class="col-lg-4 col-md-12 pb-5 wow fadeIn" data-wow-delay="0.4s">
+
+                        <!--Featured image-->
+                        <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo4">
+                            <img src="{% static 'img/outerview.JPG' %}" class="img-thumbnail">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+
+                        <!--Excerpt-->
+                        <div class="card-body">
+                            <h3 class="mt-1 mb-2">نمای بیرونی</h3>
+                        </div>
+
+                    </div>
+                    <!--/First column-->
+
+                    <!--Second column-->
+                    <div class="col-lg-4 col-md-6 pb-1 wow fadeIn" data-wow-delay="0.4s">
+
+                        <!--Featured image-->
+                        <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo5">
+                            <img src="{% static 'img/accessories.JPG' %}" class="img-thumbnail">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+
+                        <!--Excerpt-->
+                        <div class="card-body">
+                            <h3 class="mt-1 mb-2">تجهیزات اتاق</h3>
+                        </div>
+
+                    </div>
+                    <!--/Second column-->
+
+                    <!--Third column-->
+                    <div class="col-lg-4 col-md-6 pb-1 wow fadeIn" data-wow-delay="0.4s">
+
+                        <!--Featured image-->
+                        <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo6">
+                            <img src="{% static " /img/total_view.JPG " %}" class="img-thumbnail">
+                            <a>
+                                <div class="mask"></div>
+                            </a>
+                        </div>
+
+                        <!--Excerpt-->
+                        <div class="card-body">
+                            <h3 class="mt-1 mb-2">نمای کلی</h3>
+                        </div>
+
+                    </div>
+                    <!--/Third column-->
+
+                </div>
+                <!--/Second row-->
+
+            </section>
+            <!--/Section: Rooms Presentation-->
+
+            <hr class="wow fadeIn" data-wow-delay="0.4s">
+
+    </main>
+    <footer class="page-footer font-small stylish-color-dark">
+
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left">
+
+            <!-- Footer links -->
+            <div class="row text-center text-md-left mt-3 pb-3">
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">خدمات رزرواسیون مراکز رفاهی دانشگاه حکیم سبزواری</h6>
+                    <p>اینجا می‌تواند با اطلاعات مفیدی نظیر اسم و این که چه کارهایی انجام می‌شود و تحت نظارت چه کسی می‌باشد و اطلاعات مفید این چنینی پر شود</p>
+                </div>
+                <!-- Grid column -->
+
+                <hr class="w-100 clearfix d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">لینک‌های ۱</h6>
+                    <p>
+                        <a href="#!">لینک ۱</a>
+                    </p>
+                    <p>
+                        <a href="#!">لینک ۲</a>
+                    </p>
+                    <p>
+                        <a href="#!">لینک ۳</a>
+                    </p>
+                    <p>
+                        <a href="#!">لینک ۴</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+                <hr class="w-100 clearfix d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">لینک‌های مفید</h6>
+                    <p>
+                        <a href="#!">اکانت شما</a>
+                    </p>
+                    <p>
+                        <a href="#!">تماس با پشتیبانی</a>
+                    </p>
+                    <p>
+                        <a href="#!">قوانین</a>
+                    </p>
+                    <p>
+                        <a href="#!">سوالات پاسخ‌داده‌شده</a>
+                    </p>
+                </div>
+
+                <!-- Grid column -->
+                <hr class="w-100 clearfix d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">اطلاعات تماس</h6>
+                    <p>
+                        <i class="fas fa-home mr-3"></i>شهر سبزوار پلاک ...</p>
+                    <p>
+                        <i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
+                    <p>
+                        <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+                    <p>
+                        <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Footer links -->
+
+            <hr>
+
+            <!-- Grid row -->
+            <div class="row d-flex align-items-center">
+
+                <!-- Grid column -->
+                <div class="col-md-7 col-lg-8">
+
+                    <!--Copyright-->
+                    <p class="text-center text-md-left">© ۱۳۹۸ کپی‌رایت:
+                        <a href="#">
+                            <strong> کپی‌رایت</strong>
+                        </a>
+                    </p>
+
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-5 col-lg-4 ml-lg-0">
+
+                    <!-- Social buttons -->
+                    <div class="text-center text-md-right">
+                        <ul class="list-unstyled list-inline">
+
+
+
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+    </footer>
+    <!-- Footer -->
+    <!--Modal: Login / Register Form-->
+
+
+
+    <!--/.Navbar-->
+    <script>
+        function commit() {
+            document.getElementById('register_form').submit();
+        }
+    </script>
+</body>
+
+</html>

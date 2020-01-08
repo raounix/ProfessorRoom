@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <!-- Material Design for Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/all.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static  'css/custom.css' %}" rel="stylesheet" type="text/css">
+    <!-- jQuery -->
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+
+<body style="font-family: 'Vazir FD',serif;background-color:#eee" class="fixed-sn white-skin">
+
+    <!-- Font Awesome -->
+    <!-- Bootstrap -->
+
+    <header>
+        <!-- Sidebar navigation -->
+        <div id="slide-out" class="side-nav sn-bg-4 fixed">
+            <ul class="custom-scrollbar">
+                <!-- Logo -->
+                <li>
+                    <div class="logo-wrapper waves-light">
+                        <a href="#"><img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" class="img-fluid flex-center" alt="Logo"></a>
+                    </div>
+                </li>
+                <!--/. Logo -->
+                <!--Social-->
+
+                <!--/Social-->
+                <!--Search Form-->
+
+                <!--/.Search Form-->
+                <!-- Side navigation links -->
+                <li>
+                    <ul class="collapsible collapsible-accordion">
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-users"></i> کاربران<i class="fas fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="#" class="waves-effect">مشاهده کاربران</a>
+                                    </li>
+                                    <li><a href="#" class="waves-effect">اضافه کردن کاربران</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-bed"></i>
+                اتاق‌ها<i class="fas fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="#" class="waves-effect">مشاهده اتاق‌ها</a>
+                                    </li>
+                                    <li><a href="#" class="waves-effect">ویرایش اتاق‌ها</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-eye"></i> نظرسنجی<i class="fas fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="#" class="waves-effect">اضافه کردن فرم نظرسنجی</a>
+                                    </li>
+                                    <li><a href="#" class="waves-effect">مشاهده نظرسنجی انجام شده</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-ticket-alt"></i> رزرو‌ها<i
+                  class="fas fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="#" class="waves-effect">مشاهده همه رزرو‌ها</a>
+                                    </li>
+                                    <li><a href="#" class="waves-effect">ویرایش رزرو‌ها</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-comment-dollar"></i>تخفیف<i
+                  class="fas fa-angle-down rotate-icon"></i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="#" class="waves-effect">اضافه کردن تخفیف جدید</a>
+                                    </li>
+                                    <li><a href="#" class="waves-effect">مشاهده تخفیف‌ها</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!--/. Side navigation links -->
+            </ul>
+            <div class="sidenav-bg mask-strong"></div>
+        </div>
+        <!--/. Sidebar navigation -->
+
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark stylish-color-dark  scrolling-navbar double-nav">
+
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav  ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">اعلان‌ها<i class="fas fa-bell"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">پشتیبانی<i class="far fa-comments"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropDownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">پروفایل<i class="fas fa-user"></i></a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropDownMenuLink" style="text-align:right">
+                            <a class="dropdown-item" href="#">خروج</a>
+                            <a class="dropdown-item" href="#">حساب‌کاربری من</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link button-collapse" href="#" data-activates="slide-out"><i class="fas fa-bars"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--Modal: Login / Register Form-->
+    {% block content %} {% endblock %}
+    <footer class="page-footer font-small stylish-color-dark">
+
+        <!-- Footer Links -->
+        <div class="footer-copyright text-center py-3">
+            @کپی‌رایت ۱۳۹۸
+        </div>
+    </footer>
+    <!-- Footer -->
+    <!--Modal: Login / Register Form-->
+
+
+    {% load static %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+    <!-- Popper.js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+    <!-- Material Design for Bootstrap -->
+    <script src="{% static 'js/mdb.min.js' %}"></script>
+    <script>
+        // SideNav Button Initialization
+        $(document).ready(function() {
+            setTimeout(function() {
+                $(".button-collapse").sideNav();
+                // SideNav Scrollbar Initialization
+                const sideNavScrollbar = document.querySelector('.custom-scrollbar');
+                const ps = new PerfectScrollbar(sideNavScrollbar);
+            }, 1000)
+        })
+    </script>
+
+
+    <!--/.Navbar-->
+    <script>
+        function commit() {
+            document.getElementById('register_form').submit();
+        }
+    </script>
+    {% block script %} {% endblock %}
+</body>
+
+</html>

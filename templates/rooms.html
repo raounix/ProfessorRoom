@@ -1,0 +1,101 @@
+ {% extends 'admin_dashboard_base.html' %} {% load static %} {% block content %}
+<main>
+    <div class="container my-5 py-5">
+
+
+        <!-- Section: Block Content -->
+        <section class="">
+
+
+
+            <!-- Admin card -->
+            <table id="dt-material-checkbox" class="table table-striped" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="th-sm">شماره اتاق
+                        </th>
+                        <th class="th-sm">اسم اتاق
+                        </th>
+                        <th class="th-sm">نوع اتاق
+                        </th>
+                        <th class="th-sm">وضعیت اتاق
+                        </th>
+                        <th class="th-sm">وضعیت رزرو
+                        </th>
+                        <th class="th-sm">عکس
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for v in allrooms %}
+
+                    <tr>
+                        <td>{{ v.no }}</td>
+                        <td>{{ v.name }}</td>
+                        <td>{{ v.room_type }}</td>
+                        <td>{{ v.vacant }}</td>
+                        <td>{{ v.reserved_for_specific_user }}</td>
+                        <td>{{ v.images }}</td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+
+                        <th class="th-sm">شماره اتاق
+                        </th>
+                        <th class="th-sm">اسم اتاق
+                        </th>
+                        <th class="th-sm">نوع اتاق
+                        </th>
+                        <th class="th-sm">وضعیت اتاق
+                        </th>
+                        <th class="th-sm">وضعیت رزرو
+                        </th>
+                        <th class="th-sm">عکس
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+
+
+
+            <!--Grid row-->
+
+        </section>
+        <!--Section: Content-->
+
+
+    </div>
+
+</main>
+
+
+{% endblock %} {% block script %}
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+
+<!-- Bootstrap -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+
+<!-- Material Design for Bootstrap -->
+<script src="{% static 'js/mdb.min.js' %}"></script>
+<script src="{% static 'js/addons/datatables.min.js' %}"></script>
+<script>
+    $('#dt-material-checkbox').dataTable({
+
+        columnDefs: [{
+            orderable: false,
+            className: 'select-checkbox',
+            targets: 0
+        }],
+        select: {
+            style: 'os',
+            selector: 'td:first-child'
+        }
+    });
+</script>
+
+{% endblock %}
