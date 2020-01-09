@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+
+import datetime
 # Create your models here.
 
 
@@ -12,6 +14,8 @@ class Users(models.Model):
     profile = models.ImageField(upload_to="imgs/")
     room_alotted = models.BooleanField(default=False)
     Room = models.OneToOneField('Room',blank=True,on_delete=models.CASCADE,null=True)
+    def __str__(self):
+        return str(self.user)
 
 
 class Room(models.Model):
@@ -21,23 +25,28 @@ class Room(models.Model):
     room_type = models.CharField(choices=room_choice,max_length=1,default=None)
     vacant = models.BooleanField(default=False)
     reserved_for_specific_user = models.OneToOneField(Users,default=None,on_delete=models.CASCADE)
-    hostel = models.ForeignKey('Hostel', on_delete=models.CASCADE)
     images = models.ImageField(upload_to="hotel_image/",default=None)
+    default_price = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
 
+class Reserve(models.Model):
+    reserve_id = models.AutoField(primary_key=True)
+    room = models.OneToOneField(Room,on_delete=models.DO_NOTHING)
+    user = models.OneToOneField(Users,on_delete=models.DO_NOTHING)
+    start_time = models.DateTimeField(blank=True)
+    end_time = models.DateField(blank=True)
+    total_price = models.IntegerField()
+    payed = models.BooleanField(default=0)
 
-class Hostel(models.Model):
-    name = models.CharField(max_length=5)
-    gender_choices = [('M', 'مذکر'), ('F', 'مونث'),("MF","هر دو جنسیت")]
-    gender = models.CharField(
-        choices=gender_choices,
-        max_length=2,
-        default=None,
-        null=True)
-    warden = models.CharField(max_length=100, blank=True)
-    caretaker = models.CharField(max_length=100, blank=True)
+class payment(models.Model):
+    order_id = models.AutoField(primary_key=True)
+    reserve = models.OneToOneField(Reserve,on_delete=models.DO_NOTHING)
+    payed_price = models.IntegerField()
+    """discountcode = models.OneToOneField(Discount,on_delete=models.DO_NOTHING)"""
 
-    def __str__(self):
-        return self.name
+class Discount(models.Model):
+    discount_code = models.CharField(primary_key=True,max_length=50)
+    discount_type = models.IntegerField(choices=[('1','درصدی'),('2','مبلغی')])
+    discount_value = models.IntegerField()

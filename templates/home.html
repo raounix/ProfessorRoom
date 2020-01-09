@@ -148,20 +148,23 @@
 
                                 <!--Body-->
                                 <div class="modal-body mb-1">
-                                    <div class="md-form form-sm mb-5">
-                                        <i class="fas fa-envelope prefix"></i>
-                                        <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
-                                        <label dir="rtl" data-error="wrong" data-success="right" for="modalLRInput10">ایمیل شما</label>
-                                    </div>
+                                    <form method="post" id="login_form" action="/login/"> {% csrf_token %}
 
-                                    <div class="md-form form-sm mb-4">
-                                        <i class="fas fa-lock prefix"></i>
-                                        <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
-                                        <label data-error="wrong" data-success="right" for="modalLRInput11">پسورد شما</label>
-                                    </div>
-                                    <div class="text-center mt-2">
-                                        <button class="btn btn-info">ورود<i class="fas fa-sign-in ml-1"></i></button>
-                                    </div>
+                                        <div class="md-form form-sm mb-5">
+                                            <i class="fas fa-envelope prefix"></i>
+                                            <input name="Email_Address" type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                                            <label dir="rtl" data-error="wrong" data-success="right" for="modalLRInput10">ایمیل شما</label>
+                                        </div>
+
+                                        <div class="md-form form-sm mb-4">
+                                            <i class="fas fa-lock prefix"></i>
+                                            <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
+                                            <label data-error="wrong" data-success="right" for="modalLRInput11">پسورد شما</label>
+                                        </div>
+                                        <div class="text-center mt-2">
+                                            <button class="btn btn-info" onclick="login()">ورود<i class="fas fa-sign-in ml-1"></i></button>
+                                        </div>
+                                    </form>
                                 </div>
                                 <!--Footer-->
                                 <div class="modal-footer">
@@ -674,6 +677,10 @@
     <script>
         function commit() {
             document.getElementById('register_form').submit();
+        }
+
+        function login() {
+            document.getElementById('login_form').submit();
         }
     </script>
 </body>

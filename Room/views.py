@@ -8,6 +8,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
+
 from django.core.mail import EmailMessage
 from django.contrib import messages
 from .models import *
@@ -66,3 +67,20 @@ def rooms(request):
     queryrooms=Room.objects.all()
 
     return render(request,"rooms.html",{"allrooms": queryrooms})
+
+def login(request):
+  email = request.POST.get("Email_Address")
+  Email_list = User.objects.values_list('email').all()
+  print(Email_list)
+  Finded=False
+  for single in Email_list:
+    if single[0]==email:
+      Finded=True
+  
+  if Finded==True:
+    return HttpResponse("Good ! You Are Login")
+  else:
+    return HttpResponse("Email Not Found !!")
+    
+	
+	
