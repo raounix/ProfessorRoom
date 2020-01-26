@@ -24,7 +24,7 @@ class Room(models.Model):
     name = models.CharField(max_length=255)
     room_type = models.CharField(choices=room_choice,max_length=1,default=None)
     vacant = models.BooleanField(default=False)
-    reserved_for_specific_user = models.OneToOneField(Users,default=None,on_delete=models.CASCADE)
+    reserved_for_specific_user = models.OneToOneField(Users,default=None,on_delete=models.CASCADE,null=True)
     images = models.ImageField(upload_to="hotel_image/",default=None)
     default_price = models.IntegerField(default=0)
 

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .forms import SignupForm
+from .forms import SignupForm,add_room_form
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -60,6 +60,26 @@ def activate(request, uidb64, token):
 def index(request):
   form = SignupForm()
   return render(request,"home.html",{'form':form})
+
+def add_room(request):
+    form = add_room_form()
+    return render(request,"add_new_room.html",{"form":form})
+def add_new_room(request):
+    if request.method=="POST":
+            vacant = 0
+            if request.POST.get("Vacanttype1") == ["on"]:
+                vacant = 0
+            elif request.POST.get("Vacanttype2") == ["on"]:
+                vacant = 1
+            print(request.FILES)
+            my_form_data = add_room_form(request.POST, request.FILES)
+            if my_form_data.is_valid():
+                myform_clean = my_form_data.cleaned_data
+                myform = Room(no=myform_clean['no'], name=myform_clean['name'],
+                             room_type=myform_clean['room_type'], vacant=vacant
+                              ,images=myform_clean['images'],default_price=myform_clean['default_price'])
+                myform.save()
+    return redirect("/dashboard/")
 
 def dashboard(request):
     return render(request,"admin_dashboard.html")
