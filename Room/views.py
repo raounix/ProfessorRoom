@@ -8,7 +8,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
-
+from django.contrib.auth import login,logout,authenticate
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
 from django.contrib import messages
 from .models import *
@@ -88,19 +89,25 @@ def rooms(request):
 
     return render(request,"rooms.html",{"allrooms": queryrooms})
 
-def login(request):
-  email = request.POST.get("Email_Address")
-  Email_list = User.objects.values_list('email').all()
-  print(Email_list)
-  Finded=False
-  for single in Email_list:
-    if single[0]==email:
-      Finded=True
-  
-  if Finded==True:
-    return HttpResponse("Good ! You Are Login")
+def login_view(request):
+  if request.method=="POST":
+    email = request.POST["email"]
+    password = request.POST["password"]
+    authuser = None
+    user = None
+    try:
+      authuser = User.objects.get(email=email)
+    except ObjectDoesNotExist:
+            render(request,"home.html", {"notification":"کاربر موجود نمی‌باشد ایمیل خود را تصحیح کنید","notification_type":"error"})
+    if authuser:
+      user = authenticate(request,username=authuser.username,password=password)
+    if user is not None:
+      login(request,user)
+      return render(request,"home.html", {"notification":"وارد شدید","notification_type":"success"})
+    else:
+      return render(request,"home.html", {"notification":"ایمیل یا پسورد شما نادرست است","notification_type":"error"})
   else:
-    return HttpResponse("Email Not Found !!")
+    return render(request, "home.html")
 
 
 def profile(request):
@@ -117,6 +124,10 @@ def profile(request):
     elif profile_exists==1:
         return render(request, "profile.html", {"myuser":theuser})
 
+
+def logout_view(request):
+  logout(request)
+  return render(request,"home.html",{"notification":"خارج شدید","notification_type":"success"})
 
 
 
