@@ -11,7 +11,7 @@ class Users(models.Model):
     cell_phone = models.CharField(max_length=10)
     SSN = models.CharField(max_length=10)
     Address = models.TextField()
-    profile = models.ImageField(upload_to="imgs/")
+    profile = models.ImageField(upload_to="imgs/",blank=True,null=True)
     room_alotted = models.BooleanField(default=False)
     Room = models.OneToOneField('Room',blank=True,on_delete=models.CASCADE,null=True)
     def __str__(self):

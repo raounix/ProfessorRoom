@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^dashboard/rooms/$',views.rooms,name="Rooms"),
     url(r'^login/$',views.login,name='login'),
     url(r'^add_room/$',views.add_room,name="add_room"),
-    url(r'^add_new_room/$',views.add_new_room,name="add_new_room")
+    url(r'^add_new_room/$',views.add_new_room,name="add_new_room"),
+    url(r'^profile/$',views.profile,name="profile")
 ]

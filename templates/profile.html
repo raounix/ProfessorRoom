@@ -1,0 +1,129 @@
+ {% extends 'admin_dashboard_base.html' %} {% load static %} {% block content %}
+ <main>
+    <div class="container my-5 py-5">
+
+
+  <!-- Section: Block Content -->
+  <section class="">
+
+    <!--Grid row-->
+
+
+      <!--Grid column-->
+
+        <!-- Admin card -->
+<div class="row">
+      <div class="md-form">
+          <form name="edit_profile" method="post" action="/edit_profile" enctype="multipart/form-data" id="edit_profile">
+              {% csrf_token %}
+  <input type="text" id="username" class="form-control" name="username" disabled>
+  <label for="username">نام کاربری</label>
+              <input type="text" id="firstname" class="form-control" name="firstname" value="{{ myuser.user.first_name }}">
+              <label for="firstname">نام</label>
+              <input type="text" id="lastname" class="form-control" name="lastname" value="{{ myuser.user.last_name }}">
+              <label for="lastname">نام خانوادگی</label>
+              <input type="text" id="phone" name="phone" class="form-control" value="{{ myuser.phone }}">
+              <label for="phone">شماره تلفن</label>
+              <input type="text" class="form-control" name="cellphone" id="cellphone" value="{{ myuser.cell_phone }}">
+              <label for="cellphone">شماره همراه</label>
+              <input type="text" id="ssn" name="ssn" class="form-control" value="{{ myuser.SSN }}">
+              <label for="ssn">کد ملی</label>
+              <input type="text" class="form-control" name="address" id="address" value="{{ myuser.Address }}">
+              <label for="address">آدرس</label>
+              <div class="file-field">
+          <div class="btn btn-primary btn-sm float-right">
+              <span>فایل خود را انتخاب کنید</span>
+              <input type="file" name="images" id="images">
+          </div>
+          <div class="file-path-wrapper md-form mb-6">
+      <input class="file-path validate form-control" type="text"  placeholder="فایل را انتخاب کنید">
+    </div>
+                  <input type="password" id="password" name="password" class="form-control" required data-success="" data-error="لطفا رمزعبور را پر کنید">
+                  <label for="password">رمزعبور</label>
+                  <div class="text-center form-sm mt-2">
+                                            <button class="btn btn-info">ثتغییر نمایه<i class="fas fa-sign-in ml-1" onclick="edit_profile()"></i></button>
+                                        </div>
+</div>
+
+
+      </form>
+      </div>
+      </div>
+      <div class="row">
+          <form method="post" action="/change_password"  name="change_password" id="change_password">
+      <!--Grid column-->
+              <input type="password" class="form-control" name="current_password" id="current_password" required>
+              <label for="current_password">رمزعبور فعلی</label>
+              <input type="password" class="form-control" name="newpass_1" id="newpass_1">
+              <label for="newpass_1">رمز عبور جدید شما</label>
+              <input type="password" class="form-control" name="newpass_2" id="newpass_2">
+              <label for="newpass_2">تکرار رمزعبور جدید</label>
+                <div class="text-center form-sm mt-2">
+                                            <button class="btn btn-info">ثتغییر رمزعبور<i class="fas fa-sign-in ml-1" onclick="change_password()"></i></button>
+                                        </div>
+      <!--Grid column-->
+</form>
+        <!-- Admin card -->
+
+      <!--Grid column-->
+
+      <!--Grid column-->
+        <!-- Admin card -->
+
+      <!--Grid column-->
+</div>
+    <!--Grid row-->
+
+  </section>
+  <!--Section: Content-->
+
+
+</div>
+
+</main>
+{% endblock %}
+
+
+
+
+
+
+
+ {% block script %}
+<script>
+function edit_profile(){
+    document.getElementById('edit_profile').submit();
+}
+function change_password(){
+    document.getElementById('change_password').submit();
+}
+// Material Select Initialization
+</script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+
+<!-- Bootstrap -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+
+<!-- Material Design for Bootstrap -->
+<script src="{% static 'js/mdb.min.js' %}"></script>
+<script src="{% static 'js/addons/datatables.min.js' %}"></script>
+<script>
+    $('#dt-material-checkbox').dataTable({
+
+        columnDefs: [{
+            orderable: false,
+            className: 'select-checkbox',
+            targets: 0
+        }],
+        select: {
+            style: 'os',
+            selector: 'td:first-child'
+        }
+    });
+</script>
+
+{% endblock %}
+{% block image %}
+    <a href="#" class="dropdown-item"><img src="{{ myuser.profile }}" class="img-thumbnail"></a>
+{% endblock %}

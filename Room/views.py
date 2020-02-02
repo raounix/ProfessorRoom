@@ -101,6 +101,24 @@ def login(request):
     return HttpResponse("Good ! You Are Login")
   else:
     return HttpResponse("Email Not Found !!")
-    
+
+
+def profile(request):
+    current_user = request.user
+    profile_exists = 1
+    theuser = None
+    try:
+        theuser = Users.objects.get(User.objects.get(pk=current_user))
+    except Exception as e:
+        theuser = User.objects.get(pk=current_user.pk)
+        profile_exists = 0
+    if profile_exists==0:
+        return render(request,"finish_profile.html",{"myuser":theuser})
+    elif profile_exists==1:
+        return render(request, "profile.html", {"myuser":theuser})
+
+
+
+
 	
 	
