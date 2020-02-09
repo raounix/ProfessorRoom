@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--  Required meta tags always come first  -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {% load static %}
+
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+<!-- Material Design for Bootstrap -->
+    <link href="{% static 'css/mdb.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/all.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static  'css/custom.css' %}" rel="stylesheet" type="text/css">
+ <!-- jQuery -->
+
+    <meta charset="UTF-8">
+    <title>دیباره ما</title>
+
+</head>
+<body style="font-family: 'Vazir FD">
+{% load static %}
+<script src="{% static 'js/jquery-3.4.0.min.js' %}"></script>
+
+<!-- Popper.js -->
+<script src="{% static 'js/popper.min.js' %}"></script>
+
+<!-- Bootstrap -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+
+<!-- Material Design for Bootstrap -->
+<script src="{% static 'js/mdb.js' %}"></script>
+<style>
+
+        html,
+        body,
+        header,
+        .jarallax {
+          height: 700px;
+        }
+
+        @media (max-width: 740px) {
+          html,
+          body,
+          header,
+          .jarallax {
+            height: 100vh;
+          }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+          html,
+          body,
+          header,
+          .jarallax {
+            height: 100vh;
+          }
+        }
+
+        @media (min-width: 560px) and (max-width: 650px) {
+          header .jarallax h1 {
+            margin-bottom: 1.5rem !important;
+          }
+          header .jarallax h5 {
+            margin-bottom: 1.5rem !important;
+          }
+        }
+
+        .top-nav-collapse {
+            background-color: #3E4551!important;
+        }
+        .navbar:not(.top-nav-collapse) {
+            background: transparent!important;
+        }
+        @media (max-width: 768px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #3E4551!important;
+            }
+        }
+        @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #3f51b5!important;
+            }
+        }
+        h5 {
+            letter-spacing: 3px;
+        }
+    </style>
+    <!-- Main Navigation -->
+    <header>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark stylish-color-dark fixed-top scrolling-navbar">
+  <a class="navbar-brand order-md-last" href="/">سیستم یکپارچه‌ی خدمات رفاهی</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav  ml-auto">
+        <li class="nav-item">
+        <a class="nav-link" href="#">تماس با ما<i class="fas fa-address-book"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">درباره ما<i class="fas fa-info-circle"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">قوانین<i class="fas fa-tasks"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm">ثبت نام<i class="fas fa-user-plus"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm">ورود<i class="fas fa-unlock"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+        <!-- Intro Section -->
+        <div id="home" class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url(https://snn.ir/files/fa/news/1397/7/22/428575_903.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+          <div class="mask rgba-stylish-light">
+            <div class="container h-100 d-flex justify-content-center align-items-center">
+                <div class="row pt-5 mt-3">
+                    <div class="col-md-12 mb-3">
+                        <div class="intro-info-content text-center">
+                            <h1 class="display-3 white-text mb-5 wow fadeInDown" data-wow-delay="0.3s">درباره <a class="white-text font-weight-bold">ما</a></h1>
+                            <h5 class="text-uppercase white-text mb-5 mt-1 font-weight-bold wow fadeInDown" data-wow-delay="0.3s"> پل های ارتباطی </h5>
+                            <a class="btn btn-light-blue btn-lg wow fadeInDown" data-wow-delay="0.3s" href="#team" ">تیم توسعه دهنده</a>
+                            <a class="btn btn-indigo btn-lg wow fadeInDown" data-wow-delay="0.3s" href="#contact">تماس با ما</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+    </header>
+    <!-- Main Navigation -->
+
+    <!-- Main Layout -->
+    <main>
+
+        <div class="container">
+
+            <!-- Section: Team v.3 -->
+            <section id="team" class="section team-section pb-4 wow fadeIn" data-wow-delay="0.3s">
+
+                <!-- Section heading -->
+                <h2 class="font-weight-bold text-center h1 my-5"> تیم برنامه نویسی سایت</h2>
+                <!-- Section description -->
+                <p class="text-center grey-text mb-5 mx-auto w-responsive">Hakim Sabzevari University</p>
+
+                <!-- Grid row -->
+                <div class="row mb-lg-4 text-center text-md-left">
+
+                    <!-- Grid column -->
+                    <div class="col-lg-6 col-md-12 mb-4">
+
+                        <div class="col-md-6 float-left">
+                            <div class="avatar mx-auto mb-md-0 mb-3">
+                                <i class="fas fa-laptop-code fa-10x"></i>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 float-right">
+                            <h4><strong>Pouya Dowlat Abadi</strong></h4>
+                            <h6 class="font-weight-bold grey-text mb-4">Django Developer</h6>
+                            <p class="grey-text">عضو تیم اصلی توسعه</p>
+
+                            <!-- Facebook -->
+                            <a class="p-2 m-2 fa-lg fb-ic"><i class="fab fa-facebook-f"> </i></a>
+                            <!-- Twitter -->
+                            <a class="p-2 m-2 fa-lg tw-ic"><i class="fab fa-twitter"> </i></a>
+                            <!-- Dribbble -->
+                            <a class="p-2 m-2 fa-lg dribbble-ic"><i class="fab fa-dribbble"> </i></a>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-lg-6 col-md-12 mb-4">
+
+                        <div class="col-md-6 float-left">
+                            <div class="avatar mx-auto mb-md-0 mb-3">
+                                <i class="fas fa-laptop-code fa-10x"></i>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 float-right">
+                            <h4><strong>Raouf Baghejary</strong></h4>
+                           <h6 class="font-weight-bold grey-text mb-4">Django Developer</h6>
+                            <p class="grey-text">عضو تیم اصلی توسعه</p>
+
+                            <!-- Facebook -->
+                            <a class="p-2 m-2 fa-lg fb-ic"><i class="fab fa-facebook-f"> </i></a>
+                            <!-- YouTube -->
+                            <a class="p-2 m-2 fa-lg yt-ic"><i class="fab fa-youtube"> </i></a>
+                            <!-- Instagram -->
+                            <a class="p-2 m-2 fa-lg ins-ic"><i class="fab fa-instagram"> </i></a>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+                <!-- Grid row -->
+               
+
+            
+            <!-- Section: Team v.3 -->
+
+
+          
+            <!-- /Section: Gallery -->
+
+
+
+
+    </main>
+    <!-- Main Layout -->
+
+    <!-- Footer -->
+    <footer class="page-footer pt-4 mt-4 stylish-color-dark text-center text-md-left">
+
+        <!-- Footer Links -->
+        <div class="container">
+            <div class="row">
+
+                <!-- First column -->
+                <div class="col-md-6">
+                    <h6 class="text-uppercase font-weight-bold">Footer Content</h6>
+                    <p>Here you can use rows and columns here to organize your footer content.</p>
+                </div>
+                <!-- First column -->
+
+                <!-- Second column -->
+                <div class="col-md-3">
+                    <h6 class="text-uppercase font-weight-bold">Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                    </ul>
+                </div>
+                <!-- Second column -->
+
+                <!-- Third column -->
+                <div class="col-md-3">
+                    <h6 class="text-uppercase font-weight-bold">Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#!">Link 1</a></li>
+                        <li><a href="#!">Link 2</a></li>
+                        <li><a href="#!">Link 3</a></li>
+                    </ul>
+                </div>
+                <!-- Third column -->
+            </div>
+        </div>
+        <!-- Footer Links -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright py-3 text-center">
+            <div class="container-fluid">
+                &copy; 2019 Copyright: <a href="http://hsu.ac.ir"> Hakim Sabzevari University </a>
+
+            </div>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+    <!--  SCRIPTS  -->
+    <!-- JQuery -->
+    <script>
+        new WOW().init();
+
+        // MDB Lightbox Init
+        $(function () {
+            $("#mdb-lightbox-ui").load("../static/mdb-addons/mdb-lightbox-ui.html");
+        });
+
+    </script>
+</body>
+</html>

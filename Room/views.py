@@ -23,7 +23,7 @@ def signup(request):
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
-            mail_subject = 'Activate your blog account.'
+            mail_subject = 'اکانت خود را فعال نمایید'
             message = render_to_string('acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -35,7 +35,7 @@ def signup(request):
                         mail_subject, message, to=[to_email]
             )
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return render(request,"home.html",{"notification":"برای استفاده باید اکانت خود را فعال نمایید","notification_type":"error"})
         else:
           print(form.errors)
     else:
@@ -95,17 +95,20 @@ def login_view(request):
     password = request.POST["password"]
     authuser = None
     user = None
-    try:
-      authuser = User.objects.get(email=email)
-    except ObjectDoesNotExist:
-            render(request,"home.html", {"notification":"کاربر موجود نمی‌باشد ایمیل خود را تصحیح کنید","notification_type":"error"})
-    if authuser:
-      user = authenticate(request,username=authuser.username,password=password)
-    if user is not None:
-      login(request,user)
-      return render(request,"home.html", {"notification":"وارد شدید","notification_type":"success"})
+    if email != "" or password != "":
+      try:
+        authuser = User.objects.get(email=email)
+      except ObjectDoesNotExist:
+              render(request,"home.html", {"notification":"کاربر موجود نمی‌باشد ایمیل خود را تصحیح کنید","notification_type":"error"})
+      if authuser:
+        user = authenticate(request,username=authuser.username,password=password)
+      if user is not None:
+        login(request,user)
+        return render(request,"home.html", {"notification":"وارد شدید","notification_type":"success"})
+      else:
+        return render(request,"home.html", {"notification":"ایمیل یا پسورد شما نادرست است","notification_type":"error"})
     else:
-      return render(request,"home.html", {"notification":"ایمیل یا پسورد شما نادرست است","notification_type":"error"})
+      return render(request, "home.html", {"notification":"نام کاربری یا رمزعبور وارد کنید!","notification_type":"error"})
   else:
     return render(request, "home.html")
 
@@ -131,5 +134,18 @@ def logout_view(request):
 
 
 
+def checkroom(request):
+  pass
+
+def create_reserve(request):
+  pass
+def pay(request):
+  pass
+def dashboard_room_view(request):
+  pass	
 	
-	
+
+def reserve(request):
+    startdate=request.POST.get('reserve_date_start')
+    print(startdate)
+    """return HttpResponse("Captain")"""
