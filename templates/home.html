@@ -798,15 +798,23 @@ $('#reserve_date_end').MdPersianDateTimePicker({
         if (date1.getTime() > date2.getTime())
         {
                 toastr.error("تاریخ شروع از تاریخ پایان رزرو بیشتر است!");
+                return false;
                 
         }
         else if (date1.getTime() < today.getTime())
         {
             toastr.error("برای روز‌های گذشته نمی‌توانید رزرو داشته باشید!");
+            return false;
         }
         else if (date2.getTime() < today.getTime())
         {
             toastr.error("برای روزهای گذشته نمی‌توانید رزرو‌ داشته باشید!");
+            return false;
+        }
+        else {
+            $('#reserve_date_start').val(date1);
+            $('#reserve_date_end').val(date2);
+            return true;
         }
 
     }
