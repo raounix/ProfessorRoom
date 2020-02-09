@@ -1,0 +1,142 @@
+ {% extends 'admin_dashboard_base.html' %} {% load static %} {% block content %}
+<main>
+    <div class="container my-5 py-5">
+
+
+  <!-- Section: Block Content -->
+  <section class="">
+
+    <!--Grid row-->
+    <div class="row">
+
+      <!--Grid column-->
+      <div class="col-lg-4 col-md-12 mb-4">
+    <form method="post" id="add_room_form" action="/add_new_room/" enctype="multipart/form-data">
+              {% csrf_token %}
+        <!--Body-->
+        <div class="md-form mb-5">
+          <input type="text" id="Form_room_no" class="form-control validate" name="no">
+          <label data-error="الزامی" data-success="" for="Form_room_no">شماره اتاق</label>
+        </div>
+
+        <div class="md-form mb-5">
+          <input type="text" id="Form_room_name" class="form-control validate" name="name">
+          <label data-error="الزامی" data-success="" for="Form_room_name">نام اتاق</label>
+
+
+        </div>
+              <div class="md-form mb-5">
+          <select id="Form_room_type" class="browser-default custom-select" name="room_type">
+              <option value="" disabled selected>نوع اتاق را انتخاب کنید</option>
+              <option value="1">تک تخت</option>
+                            <option value="2">دو تخت</option>
+              <option value="3">سه تخت</option>
+              <option value="4">چهار تخت</option>
+          </select>
+
+{#          <label data-error="الزامی" data-success="" for="Form_Cell_Phone" class="float-right">شماره همراه</label>#}
+
+
+        </div>
+              <div class="md-form mb-5">
+          <!-- Material inline 1 -->
+<div class="form-check form-check-inline">
+  <input type="radio" class="form-check-input" id="materialInline1" name="Vacanttype1">
+  <label class="form-check-label" for="materialInline1">قابل استفاده</label>
+</div>
+
+<!-- Material inline 2 -->
+<div class="form-check form-check-inline">
+  <input type="radio" class="form-check-input" id="materialInline2" name="Vacanttype2">
+  <label class="form-check-label" for="materialInline2">غیرقابل استفاده</label>
+</div>
+
+<!-- Material inline 3 -->
+
+
+        </div>
+<div class="md-form mb-5">
+          <input type="number" id="Form_room_price" class="form-control validate" name="default_price" >
+          <label data-error="الزامی" data-success="" for="Form_room_price" class="float-right">قیمت اتاق</label>
+        </div>
+<div class="file-field">
+          <div class="btn btn-primary btn-sm float-right">
+              <span>فایل خود را انتخاب کنید</span>
+              <input type="file" name="images" id="images">
+          </div>
+          <div class="file-path-wrapper md-form mb-6">
+      <input class="file-path validate form-control" type="text"  placeholder="فایل را انتخاب کنید">
+    </div>
+</div>
+
+              <div class="text-center form-sm mt-2">
+                                            <button class="btn btn-info">ثبت کاربر<i class="fas fa-sign-in ml-1" onclick="add_new_room()"></i></button>
+                                        </div>
+
+        </form>
+        </div>
+        <!-- Admin card -->
+
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+
+        <!-- Admin card -->
+
+      <!--Grid column-->
+
+      <!--Grid column-->
+        <!-- Admin card -->
+
+      <!--Grid column-->
+
+    <!--Grid row-->
+
+  </section>
+  <!--Section: Content-->
+
+
+</div>
+
+</main>
+{% endblock %}
+
+
+
+
+
+
+
+ {% block script %}
+<script>
+function add_new_room(){
+    document.getElementById('add_room_form').submit();
+}
+// Material Select Initialization
+</script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+
+<!-- Bootstrap -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+
+<!-- Material Design for Bootstrap -->
+<script src="{% static 'js/mdb.min.js' %}"></script>
+<script src="{% static 'js/addons/datatables.min.js' %}"></script>
+<script>
+    $('#dt-material-checkbox').dataTable({
+
+        columnDefs: [{
+            orderable: false,
+            className: 'select-checkbox',
+            targets: 0
+        }],
+        select: {
+            style: 'os',
+            selector: 'td:first-child'
+        }
+    });
+</script>
+
+{% endblock %}

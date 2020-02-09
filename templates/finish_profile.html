@@ -1,0 +1,109 @@
+ {% extends 'admin_dashboard_base.html' %} {% load static %} {% block content %}
+ <main>
+    <div class="container my-5 py-5">
+
+
+  <!-- Section: Block Content -->
+  <section class="">
+
+    <!--Grid row-->
+
+
+      <!--Grid column-->
+
+        <!-- Admin card -->
+<div class="row">
+      <div class="md-form">
+          <form name="edit_profile" method="post" action="/edit_profile" enctype="multipart/form-data" id="edit_profile">
+              {% csrf_token %}
+              <div class="md-form mb-5">
+  <input type="text" id="username" class="form-control" name="username" disabled>
+  <label for="username">نام کاربری</label>
+              </div>
+              <div class="md-form mb-5">
+              <input type="text" id="firstname" class="form-control" name="firstname" data-success="" data-error="این قسمت الزامی می‌باشد" required>
+              <label for="firstname">نام</label>
+              </div>
+              <div class="md-form mb-5">
+              <input type="text" id="lastname" class="form-control" name="lastname"  data-success="" data-error="این قسمت الزامی می‌باشد" required>
+              <label for="lastname">نام خانوادگی</label>
+              </div>
+              <div class="md-form mb-5">
+              <input type="text" id="phone" name="phone" class="form-control"  data-success="" data-error="این قسمت الزامی می‌باشد" required>
+              <label for="phone">شماره تلفن</label>
+              </div>
+              <div class="md-form mb-5">
+              <input type="text" class="form-control" name="cellphone" id="cellphone"  data-success="" data-error="این قسمت الزامی می‌باشد" required>
+              <label for="cellphone">شماره همراه</label>
+              </div>
+              <div class="md-form mb-5">
+              <input type="text" id="ssn" name="ssn" class="form-control"  data-success="" data-error="این قسمت الزامی می‌باشد" required>
+              <label for="ssn">کد ملی</label>
+              </div>
+              <div class="md-form mb-3">
+              <input type="text" class="form-control" name="address" id="address"  data-success="" data-error="این قسمت الزامی می‌باشد" required>
+              <label for="address">آدرس</label>
+              </div>
+              <div class="md-form mb-5">
+              <div class="file-field">
+          <div class="btn btn-primary btn-sm float-right">
+              <span>فایل خود را انتخاب کنید</span>
+              <input type="file" name="images" id="images">
+          </div>
+          <div class="file-path-wrapper md-form mb-6">
+      <input class="file-path validate form-control" type="text"  placeholder="فایل را انتخاب کنید">
+    </div>
+              </div>
+                  <div class="md-form mb-5">
+                  <input type="password" id="password" name="password" class="form-control" required data-success="" data-error="لطفا رمزعبور را پر کنید">
+                  <label for="password">رمزعبور</label>
+                  </div>
+                  <div class="text-center form-sm mt-2">
+                                            <button class="btn btn-info">ثتغییر نمایه<i class="fas fa-sign-in ml-1" onclick="edit_profile()"></i></button>
+                                        </div>
+</div>
+
+
+      </form>
+      </div>
+      </div>
+
+    <!--Grid row-->
+
+  </section>
+  <!--Section: Content-->
+
+
+</div>
+
+</main>
+{% endblock %}
+
+
+
+
+
+
+
+ {% block script %}
+<script>
+function edit_profile(){
+    document.getElementById('edit_profile').submit();
+}
+// Material Select Initialization
+</script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+
+<!-- Bootstrap -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+
+<!-- Material Design for Bootstrap -->
+<script src="{% static 'js/mdb.min.js' %}"></script>
+<script src="{% static 'js/addons/datatables.min.js' %}"></script>
+
+
+{% endblock %}
+{% block image %}
+    <a href="#" class="dropdown-item"><img src="{{ myuser.profile }}" class="img-thumbnail"></a>
+{% endblock %}

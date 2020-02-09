@@ -9,6 +9,7 @@
     <link href="{% static 'css/mdb.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/all.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static  'css/custom.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/jquery.md.bootstrap.datetimepicker.style.css' %}" rel="stylesheet" type="text/css">
     <!-- jQuery -->
 
     <meta charset="UTF-8">
@@ -17,7 +18,6 @@
 </head>
 
 <body style="font-family: 'Vazir FD'">
-
     <style>
 
     </style>
@@ -34,6 +34,8 @@
 
     <!-- Material Design for Bootstrap -->
     <script src="{% static 'js/mdb.js' %}"></script>
+    <script src="{% static 'js/validate.js' %}"></script>
+    <script src="{% static 'js/jquery.md.bootstrap.datetimepicker.js'%}"></script>
     <style>
         html,
         body,
@@ -96,7 +98,8 @@
     <!--Navbar-->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark stylish-color-dark fixed-top scrolling-navbar">
-            <a class="navbar-brand order-md-last" href="#">سیستم یکپارچه‌ی خدمات رفاهی</a>
+            <a class="navbar-brand order-md-last" href="#">{% if user.is_authenticated %}
+             خوش آمدید {{ user.username}} {% else %} سیستم یکپارچه‌ی خدمات رفاهی{% endif %}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -111,15 +114,22 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">قوانین<i class="fas fa-tasks"></i></a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">خروج<i class="fas fa-sign-out-alt"></i></a>
+                    </li>
+                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm">ثبت نام<i class="fas fa-user-plus"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm">ورود<i class="fas fa-unlock"></i></a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
+        
         <!--Modal: Login / Register Form-->
         <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog cascading-modal" role="document">
@@ -140,7 +150,7 @@
               ثبت‌نام</a>
                             </li>
                         </ul>
-
+                        
                         <!-- Tab panels -->
                         <div class="tab-content">
                             <!--Panel 7-->
@@ -148,17 +158,17 @@
 
                                 <!--Body-->
                                 <div class="modal-body mb-1">
-                                    <form method="post" id="login_form" action="/login/"> {% csrf_token %}
-
+                                    <form method="post" id="login_form" action="/login/"> 
+                                        {% csrf_token %}
                                         <div class="md-form form-sm mb-5">
                                             <i class="fas fa-envelope prefix"></i>
-                                            <input name="Email_Address" type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                                            <input name="email" type="email" id="modalLRInput10" class="form-control form-control-sm validate">
                                             <label dir="rtl" data-error="wrong" data-success="right" for="modalLRInput10">ایمیل شما</label>
                                         </div>
 
                                         <div class="md-form form-sm mb-4">
                                             <i class="fas fa-lock prefix"></i>
-                                            <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
+                                            <input type="password" id="modalLRInput11" class="form-control form-control-sm validate" name="password">
                                             <label data-error="wrong" data-success="right" for="modalLRInput11">پسورد شما</label>
                                         </div>
                                         <div class="text-center mt-2">
@@ -230,6 +240,18 @@
             </div>
 
         </div>
+        {% if notification %}
+            {% if notification_type == "error" %}
+                <script>
+                toastr.error("{{notification}}");
+                </script>
+                
+    </div>
+    {% endif %}
+    {% if notification_type == "success"%}
+                <script>toastr.success("{{notification}}")</script>
+    {% endif %}
+    {% endif %}
         <div id="home" class="view hm-black-strong-1 jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url({% static '/img/hotel_image.jpg'%})">
             <div class="mask rgba-stylish-light">
                 <div class="container h-100 d-flex justify-content-center align-items-center">
@@ -252,6 +274,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="modal fade" id="photo1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-photo" role="document">
                 <!--Content-->
@@ -412,6 +435,50 @@
 
             <!--Section: Rooms Prestentation-->
             <section id="rooms" class="section mt-5">
+                <h1 class="text-center font-up font-bold mt-5 mb-3 pt-5 wow fadeIn" data-wow-delay="0.2s">رزرو بلیط</h1>
+                <form method="post" id="reserve_form" action="/reserve/" onsubmit="return checkform()"> 
+                                        {% csrf_token %}
+                                        <div class="md-form form-sm mb-5">
+                                            <i class="fas fa-envelope prefix"></i>
+                                            <input name="reserve_date_start" type="text" id="reserve_date_start" class="form-control form-control-sm validate">
+                                            <label id="label_to_active" dir="rtl" data-error="wrong" data-success="right" for="reserve_date_start" class="active">تاریخ شروع</label>
+                                        </div>
+
+                                        <div class="md-form form-sm mb-4">
+                                            <i class="fas fa-lock prefix"></i>
+                                            <input type="text" id="reserve_date_end" class="form-control form-control-sm validate" name="reserve_date_end">
+                                            <label data-error="wrong" data-success="right" for="reserve_date_end" class="active">تاریخ پایان</label>
+                                        </div>
+                                        <div class="mdb-select md-form" dir="rtl">
+                                        <select class="browser-default custom-select">
+  <option selected disabled>تعداد تخت خواب‌ها را وارد کنید</option>
+  <option value="1">یک تخت خواب</option>
+  <option value="2">دو تخت خواب</option>
+  <option value="3">سه تخت خواب</option>
+  <option value="4">چهار تخت خواب</option>
+
+</select>
+</div>
+<div class="mdb-select md-form" dir="rtl">
+                                        <select class="browser-default custom-select">
+  <option selected disabled>تعداد افراد اضافه را وارد نمایید</option>
+  <option value="1">یک نفر</option>
+  <option value="2">دو نفر</option>
+  <option value="3">سه نفر</option>
+  <option value="4">چهار نفر</option>
+
+</select>
+</div>
+                                        <div class="text-center mt-2">
+                                        </div>
+                                                                                <button class="btn btn-info" onclick="getdate()">ورود<i class="fas fa-sign-in ml-1"></i></button>
+
+                                    </form>
+
+
+    
+
+    
 
                 <!--Secion heading-->
                 <h1 class="text-center font-up font-bold mt-5 mb-3 pt-5 wow fadeIn" data-wow-delay="0.2s">گالری تصاویر</h1>
@@ -531,7 +598,7 @@
 
                         <!--Featured image-->
                         <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo6">
-                            <img src="{% static " /img/total_view.JPG " %}" class="img-thumbnail">
+                            <img src="{% static "img/total_view.JPG" %}" class="img-thumbnail">
                             <a>
                                 <div class="mask"></div>
                             </a>
@@ -675,13 +742,74 @@
 
     <!--/.Navbar-->
     <script>
+        var constraints = {
+  email: {
+    // If email is required
+    presence: true,
+    // and you want to check if this is an email
+    email: true
+  },
+  password: {
+      presence:true,
+      length:{
+          minimum:5
+      }
+  },
+}
         function commit() {
-            document.getElementById('register_form').submit();
+            var regis_form = document.getElementById('register_form')
+            regis_form.addEventListener("submit",function(ev){
+                ev.preventDefault();
+                handleFormSubmit(regis_form);
+            });
+            regis_form.submit();
         }
 
         function login() {
-            document.getElementById('login_form').submit();
+            var login_form = document.getElementById('login_form')
+            login_form.addEventListener("submit",function(ev){
+                ev.preventDefault();
+                handleFormSubmit(login_form);
+            });
+            login_form.submit();
         }
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+            $('#reserve_date_start').MdPersianDateTimePicker({ 
+  targetTextSelector: '#reserve_date_start',
+  disableBeforeToday:true,
+
+});
+
+$('#reserve_date_end').MdPersianDateTimePicker({ 
+  targetTextSelector: '#reserve_date_end',
+  disableBeforeToday:true,
+})
+
+});
+    function getdate(){
+        console.log($("#reserve_date_start").MdPersianDateTimePicker('getDate'));
+        console.log($("#reserve_date_end").MdPersianDateTimePicker('getDate'));}
+    function checkform(){
+        var date1 = new Date($("#reserve_date_start").MdPersianDateTimePicker('getDate'));
+        var date2 = new Date($("#reserve_date_end").MdPersianDateTimePicker('getDate'));
+        var today = new Date()
+        if (date1.getTime() > date2.getTime())
+        {
+                toastr.error("تاریخ شروع از تاریخ پایان رزرو بیشتر است!");
+                
+        }
+        else if (date1.getTime() < today.getTime())
+        {
+            toastr.error("برای روز‌های گذشته نمی‌توانید رزرو داشته باشید!");
+        }
+        else if (date2.getTime() < today.getTime())
+        {
+            toastr.error("برای روزهای گذشته نمی‌توانید رزرو‌ داشته باشید!");
+        }
+
+    }
     </script>
 </body>
 
