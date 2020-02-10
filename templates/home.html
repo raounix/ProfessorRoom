@@ -449,13 +449,13 @@
                                             <input type="text" id="reserve_date_end" class="form-control form-control-sm validate" name="reserve_date_end">
                                             <label data-error="wrong" data-success="right" for="reserve_date_end" class="active">تاریخ پایان</label>
                                         </div>
-                                        <div class="mdb-select md-form" dir="rtl">
-                                        <select class="browser-default custom-select">
+                                        <div class="mdb-select md-form" dir="rtl" >
+                                        <select class="browser-default custom-select" name="bednumber" id="bednumber">
   <option selected disabled>تعداد تخت خواب‌ها را وارد کنید</option>
-  <option value="1">یک تخت خواب</option>
-  <option value="2">دو تخت خواب</option>
-  <option value="3">سه تخت خواب</option>
-  <option value="4">چهار تخت خواب</option>
+  <option value="1">یک تخت خواب </option>
+  <option value="2">دو تخت خواب </option>
+  <option value="3">سه تخت خواب </option>
+  <option value="4">چهار تخت خواب </option>
 
 </select>
 </div>
@@ -793,6 +793,7 @@ $('#reserve_date_end').MdPersianDateTimePicker({
         console.log($("#reserve_date_end").MdPersianDateTimePicker('getDate'));}
     function checkform(){
         var date1 = new Date($("#reserve_date_start").MdPersianDateTimePicker('getDate'));
+        
         var date2 = new Date($("#reserve_date_end").MdPersianDateTimePicker('getDate'));
         var today = new Date()
         if (date1.getTime() > date2.getTime())
@@ -812,8 +813,8 @@ $('#reserve_date_end').MdPersianDateTimePicker({
             return false;
         }
         else {
-            $('#reserve_date_start').val(date1);
-            $('#reserve_date_end').val(date2);
+          $('#reserve_date_start').val(date1.toUTCString());
+            $('#reserve_date_end').val(date2.toUTCString());
             return true;
         }
 

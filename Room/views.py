@@ -13,7 +13,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
 from django.contrib import messages
 from .models import *
-
+from datetime import datetime
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -147,5 +147,30 @@ def dashboard_room_view(request):
 
 def reserve(request):
     startdate=request.POST.get('reserve_date_start')
-    print(startdate)
+    stopdate=request.POST.get('reserve_date_end')
+    bednumber=request.POST.get('bednumber')
+
+
+    startday=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").day
+    startmonth=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").month
+
+    startyear=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").year
+    
+    stopday=datetime.strptime(stopdate, "%a, %d %b %Y %H:%M:%S %Z").day
+    stopmonth=datetime.strptime(stopdate, "%a, %d %b %Y %H:%M:%S %Z").month
+
+    stopyear=datetime.strptime(stopdate, "%a, %d %b %Y %H:%M:%S %Z").year
+    RoomChoice = Room.objects.all().filter(room_type=bednumber)
+    ReservedRooms = Reserve.objects.all(room=RoomChoice)
+    print(ReservedRooms)
+  
+
+
+    print(str(stopday))
+    print(str(stopmonth))
+
+    print(str(stopyear))
+
+    return HttpResponse("Captain")
+
     """return HttpResponse("Captain")"""

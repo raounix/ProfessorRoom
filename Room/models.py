@@ -19,7 +19,7 @@ class Users(models.Model):
 
 
 class Room(models.Model):
-    room_choice = [('1','یک تخته'),('2',"دو تخته"),("3","۳ تخته"),("4","۴ تخته")]
+    room_choice = [('1','یک تخته'),('2',"دو تخته"),("3","سه تخته"),("4","چهار تخته")]
     no = models.CharField(max_length=5)
     name = models.CharField(max_length=255)
     room_type = models.CharField(choices=room_choice,max_length=1,default=None)
