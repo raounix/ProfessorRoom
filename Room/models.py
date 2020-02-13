@@ -38,7 +38,7 @@ class Reserve(models.Model):
     start_time = models.DateTimeField(blank=True)
     end_time = models.DateField(blank=True)
     total_price = models.IntegerField()
-    """people_count = models.IntegerField()"""
+    people_count = models.IntegerField()
     payed = models.BooleanField(default=0)
     def __str__(self):
         return self.room.name

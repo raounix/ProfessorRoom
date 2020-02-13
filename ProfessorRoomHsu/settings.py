@@ -25,7 +25,7 @@ SECRET_KEY = 'fg#uk%s-sxt^p015hd%$pimnpy2690ozav7af91ciqp(rej6ca'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -125,6 +125,7 @@ STATICFILES_DIRS = (
 )
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'redacted1989@gmail.com'
+EMAIL_HOST_PASSWORD = 'Killer1315@'
 EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

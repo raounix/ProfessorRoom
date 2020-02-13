@@ -481,6 +481,29 @@
     
 
                 <!--Secion heading-->
+                <div id="Abouthotel">
+                <table id="dthotel_choose" class="table table-striped" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                <th class="th-sm">شماره اتاق</th>
+                <th class="th-sm">ظرفیت اتاق</th>
+                <th class="th-sm">قیمت</th>
+                <th class="th-sm"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for x in rooms_returned %}
+                <tr>
+                <td>{{ x.no }}</td>
+                <td>{{ x.room_type }}</td>
+                <td>{{ x.default_price }}</td>
+                <td><button class="btn aqua-gradient" onclick="return reserve_room({{x.no}})">رزرو</button></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+
+                </div>
                 <h1 class="text-center font-up font-bold mt-5 mb-3 pt-5 wow fadeIn" data-wow-delay="0.2s">گالری تصاویر</h1>
 
                 <!--Section description-->
@@ -617,7 +640,6 @@
 
             </section>
             <!--/Section: Rooms Presentation-->
-
             <hr class="wow fadeIn" data-wow-delay="0.4s">
 
     </main>
@@ -813,12 +835,50 @@ $('#reserve_date_end').MdPersianDateTimePicker({
             return false;
         }
         else {
-          $('#reserve_date_start').val(date1.toUTCString());
-            $('#reserve_date_end').val(date2.toUTCString());
+          date_start = $('#reserve_date_start').val(date1.toUTCString());
+            date_stop = $('#reserve_date_end').val(date2.toUTCString());
+            $.ajax({
+            url:"reserve",
+            type:"post",
+            data:{"start_date":date_start,"stop_date":date_stop},
+            success:function(){
+            toastr.success("OK")
             return true;
+        },
+        error:function(){
+            toastr.error("ERROR")
+            return false;
+        
+        },
+        
+        });
+            
         }
 
     }
+    </script>
+    <script>
+    function reserve_room(room_number){
+        $.ajax({
+            url:"reserve_room",
+            type:"POST",
+            data:{"room_number":room_number},
+        success:function(){
+            toastr.sucess("اتاق شماره {{room_number}} با موفقیت رزرو شد");
+
+        },
+        error:function(){
+            toastr.error("در رزرو اتاق مشکلی پیش آمده است لطفا بعدا تلاش کنید یا به پشتیبانی اطلاع دهید");
+        },})
+        
+    }
+    </script>
+    <script>
+    $('#post-form').on('submit', function(event){
+    event.preventDefault();
+    console.log("form submitted!")  // sanity check
+    create_post();
+});
     </script>
 </body>
 

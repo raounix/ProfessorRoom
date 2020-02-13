@@ -146,31 +146,31 @@ def dashboard_room_view(request):
 	
 
 def reserve(request):
-    startdate=request.POST.get('reserve_date_start')
-    stopdate=request.POST.get('reserve_date_end')
+    # startdate=request.POST.get('reserve_date_start')
+    # stopdate=request.POST.get('reserve_date_end')
     bednumber=request.POST.get('bednumber')
+    all_rooms = Room.objects.filter(room_type=bednumber)
 
+    # startday=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").day
+    # startmonth=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").month
 
-    startday=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").day
-    startmonth=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").month
-
-    startyear=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").year
+    # startyear=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").year
     
-    stopday=datetime.strptime(stopdate, "%a, %d %b %Y %H:%M:%S %Z").day
-    stopmonth=datetime.strptime(stopdate, "%a, %d %b %Y %H:%M:%S %Z").month
+    # stopday=datetime.strptime(stopdate, "%a, %d %b %Y %H:%M:%S %Z").day
+    # stopmonth=datetime.strptime(stopdate, "%a, %d %b %Y %H:%M:%S %Z").month
 
-    stopyear=datetime.strptime(stopdate, "%a, %d %b %Y %H:%M:%S %Z").year
-    RoomChoice = Room.objects.all().filter(room_type=bednumber)
-    ReservedRooms = Reserve.objects.all(room=RoomChoice)
-    print(ReservedRooms)
+    # stopyear=datetime.strptime(stopdate, "%a, %d %b %Y %H:%M:%S %Z").year
+    # # RoomChoice = Room.objects.all().filter(room_type=bednumber)
+
+    
   
 
 
-    print(str(stopday))
-    print(str(stopmonth))
+    # print(str(stopday))
+    # print(str(stopmonth))
 
-    print(str(stopyear))
+    # print(str(stopyear))
 
-    return HttpResponse("Captain")
-
+    # return HttpResponse("Captain")
+    return render(request, "home.html", {"notification_type": "error","rooms_returned":all_rooms,"notification":"اتاقی با مشخصات زیر قابل رزرو نیست "})
     """return HttpResponse("Captain")"""
