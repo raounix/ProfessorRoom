@@ -436,7 +436,7 @@
             <!--Section: Rooms Prestentation-->
             <section id="rooms" class="section mt-5">
                 <h1 class="text-center font-up font-bold mt-5 mb-3 pt-5 wow fadeIn" data-wow-delay="0.2s">رزرو بلیط</h1>
-                <form method="post" id="reserve_form" action="/reserve/" onsubmit="return checkform()"> 
+                <form method="post" id="reserve_form" action="/reserve/"> 
                                         {% csrf_token %}
                                         <div class="md-form form-sm mb-5">
                                             <i class="fas fa-envelope prefix"></i>
@@ -471,7 +471,7 @@
 </div>
                                         <div class="text-center mt-2">
                                         </div>
-                                                                                <button class="btn btn-info" onclick="getdate()">ورود<i class="fas fa-sign-in ml-1"></i></button>
+                                                                                <button class="btn btn-info" type="submit">ورود<i class="fas fa-sign-in ml-1"></i></button>
 
                                     </form>
 
@@ -814,6 +814,7 @@ $('#reserve_date_end').MdPersianDateTimePicker({
         console.log($("#reserve_date_start").MdPersianDateTimePicker('getDate'));
         console.log($("#reserve_date_end").MdPersianDateTimePicker('getDate'));}
     function checkform(){
+        getdate();
         var date1 = new Date($("#reserve_date_start").MdPersianDateTimePicker('getDate'));
         
         var date2 = new Date($("#reserve_date_end").MdPersianDateTimePicker('getDate'));
@@ -837,16 +838,34 @@ $('#reserve_date_end').MdPersianDateTimePicker({
         else {
           date_start = $('#reserve_date_start').val(date1.toUTCString());
             date_stop = $('#reserve_date_end').val(date2.toUTCString());
+            console.log(date_start.val());
             $.ajax({
-            url:"reserve",
+            url:"/reserve/",
             type:"post",
-            data:{"start_date":date_start,"stop_date":date_stop},
-            success:function(){
-            toastr.success("OK")
+            dataType:"json",
+            data:{"start_date":date_start.val(),"stop_date":date_stop.val(),csrfmiddlewaretoken: '{{ csrf_token }}',bednumber:$("#bednumber").val()},
+            success:function(result){
+            console.log("Success");
+            toastr.success("OK");
+            console.log(result);
+            var event_data = '';
+            $.each(result,function(index,value){
+                event_data += '<tr>';
+                event_data += '<td>'+value.fields.no+'</td>';
+                event_data += '<td>'+value.fields.room_type+'</td>';
+                event_data += '<td>'+value.fields.default_price+'</td>';
+                event_data += '<td><button class="btn aqua-gradient" onclick="return reserve_room('+value.fields.no+');">رزرو</button></td>';
+                event_data += '</tr>';
+
+            });
+            $("#dthotel_choose").append(event_data);
+            // Must return false to Not submit form
             return true;
         },
         error:function(){
-            toastr.error("ERROR")
+            console.log("FAILED");
+            toastr.error("ERROR");
+
             return false;
         
         },
@@ -874,10 +893,12 @@ $('#reserve_date_end').MdPersianDateTimePicker({
     }
     </script>
     <script>
-    $('#post-form').on('submit', function(event){
+    $('#reserve_form').on('submit', function(event){
     event.preventDefault();
-    console.log("form submitted!")  // sanity check
-    create_post();
+    checkform();
+
+    console.log("form submitted!");  // sanity check
+    return false;
 });
     </script>
 </body>
