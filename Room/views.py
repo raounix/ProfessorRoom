@@ -14,6 +14,8 @@ from django.core.mail import EmailMessage
 from django.contrib import messages
 from .models import *
 from datetime import datetime
+import json
+from django.core import serializers
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -148,8 +150,10 @@ def dashboard_room_view(request):
 def reserve(request):
     # startdate=request.POST.get('reserve_date_start')
     # stopdate=request.POST.get('reserve_date_end')
+    print(request.POST)
     bednumber=request.POST.get('bednumber')
     all_rooms = Room.objects.filter(room_type=bednumber)
+
 
     # startday=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").day
     # startmonth=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").month
@@ -172,5 +176,7 @@ def reserve(request):
     # print(str(stopyear))
 
     # return HttpResponse("Captain")
-    return render(request, "home.html", {"notification_type": "error","rooms_returned":all_rooms,"notification":"اتاقی با مشخصات زیر قابل رزرو نیست "})
+    # return render(request, "home.html", {"notification_type": "error","rooms_returned":all_rooms,"notification":"اتاقی با مشخصات زیر قابل رزرو نیست "})
+    data = serializers.serialize('json',all_rooms)
+    return HttpResponse(data,content_type="application/json")
     """return HttpResponse("Captain")"""
