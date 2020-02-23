@@ -24,7 +24,7 @@ class Room(models.Model):
     name = models.CharField(max_length=255)
     room_type = models.CharField(choices=room_choice,max_length=1,default=None)
     vacant = models.BooleanField(default=False)
-    reserved_for_specific_user = models.OneToOneField(Users,default=None,on_delete=models.CASCADE,null=True)
+    reserved_for_specific_user = models.OneToOneField(Users,default=None,on_delete=models.CASCADE,null=True,blank=True)
     images = models.ImageField(upload_to="hotel_image/",default=None)
     default_price = models.IntegerField(default=0)
 
@@ -35,10 +35,11 @@ class Reserve(models.Model):
     reserve_id = models.AutoField(primary_key=True)
     room = models.OneToOneField(Room,on_delete=models.DO_NOTHING)
     user = models.OneToOneField(Users,on_delete=models.DO_NOTHING)
-    start_time = models.DateTimeField(blank=True)
+    start_time = models.DateField(blank=True)
     end_time = models.DateField(blank=True)
     total_price = models.IntegerField()
-    people_count = models.IntegerField()
+    bednumber = models.IntegerField(default=2)
+    people_count = models.IntegerField(default=0)
     payed = models.BooleanField(default=0)
     def __str__(self):
         return self.room.name

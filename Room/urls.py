@@ -13,5 +13,7 @@ urlpatterns = [
     url(r'^profile/$',views.profile,name="profile"),
     url(r'^logout/$',views.logout_view,name="logout"),
     url(r'^reserve/$',views.reserve,name="reserve"),
+    url(r'^show_reserve/$',views.show_reserve,name="show_reserve"),
+
 
 ]

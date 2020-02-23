@@ -10,6 +10,7 @@
     <link href="{% static 'css/all.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static  'css/custom.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/jquery.md.bootstrap.datetimepicker.style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/scrollview.css' %}" rel="stylesheet" type="text/css">
     <!-- jQuery -->
 
     <meta charset="UTF-8">
@@ -287,7 +288,7 @@
                     <div class="modal-body">
                         <!--Featured image-->
                         <div class="">
-                            <img src="{% static '/img/conference_room.JPG' %}" class="img-fluid">
+                            <img src="{% static '/img/conference_room.jpg' %}" class="img-fluid">
                         </div>
                     </div>
                     <!--Footer-->
@@ -313,7 +314,7 @@
                     <div class="modal-body">
                         <!--Featured image-->
                         <div class="">
-                            <img src="{% static '/img/bedroom.JPG' %}" class="img-fluid">
+                            <img src="{% static '/img/bedroom.jpg' %}" class="img-fluid">
                         </div>
                     </div>
                     <!--Footer-->
@@ -339,7 +340,7 @@
                     <div class="modal-body">
                         <!--Featured image-->
                         <div class="">
-                            <img src="{% static '/img/eatingroom.JPG' %}" class="img-fluid">
+                            <img src="{% static '/img/eatingroom.jpg' %}" class="img-fluid">
                         </div>
                     </div>
                     <!--Footer-->
@@ -365,7 +366,7 @@
                     <div class="modal-body">
                         <!--Featured image-->
                         <div class="">
-                            <img src="{% static '/img/outerview.JPG' %}" class="img-fluid">
+                            <img src="{% static '/img/outerview.jpg' %}" class="img-fluid">
                         </div>
                     </div>
                     <!--Footer-->
@@ -391,7 +392,7 @@
                     <div class="modal-body">
                         <!--Featured image-->
                         <div class="">
-                            <img src="{% static '/img/accessories.JPG' %}" class="img-fluid">
+                            <img src="{% static '/img/accessories.jpg' %}" class="img-fluid">
                         </div>
                     </div>
                     <!--Footer-->
@@ -417,7 +418,7 @@
                     <div class="modal-body">
                         <!--Featured image-->
                         <div class="">
-                            <img src="{% static 'img/total_view.JPG' %}" class="img-fluid" alt="">
+                            <img src="{% static 'img/total_view.jpg' %}" class="img-fluid" alt="">
                         </div>
                     </div>
                     <!--Footer-->
@@ -471,7 +472,7 @@
 </div>
                                         <div class="text-center mt-2">
                                         </div>
-                                                                                <button class="btn btn-info" type="submit">ورود<i class="fas fa-sign-in ml-1"></i></button>
+                                                                                <button class="btn btn-info" type="submit">جستجو<i class="fas fa-sign-in ml-1"></i></button>
 
                                     </form>
 
@@ -482,6 +483,8 @@
 
                 <!--Secion heading-->
                 <div id="Abouthotel">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
                 <table id="dthotel_choose" class="table table-striped" cellspacing="0" width="100%">
                 <thead>
                 <tr>
@@ -502,6 +505,7 @@
                 {% endfor %}
                 </tbody>
                 </table>
+                </div>
 
                 </div>
                 <h1 class="text-center font-up font-bold mt-5 mb-3 pt-5 wow fadeIn" data-wow-delay="0.2s">گالری تصاویر</h1>
@@ -517,7 +521,7 @@
 
                         <!--Featured image-->
                         <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo1">
-                            <img src="{% static '/img/conference_room.JPG' %}" class="img-thumbnail">
+                            <img src="{% static '/img/conference_room.jpg' %}" class="img-thumbnail">
                             <a>
                                 <div class="mask"></div>
                             </a>
@@ -537,7 +541,7 @@
 
                         <!--Featured image-->
                         <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo2">
-                            <img src="{% static '/img/bedroom.JPG' %}" class="img-thumbnail">
+                            <img src="{% static '/img/bedroom.jpg' %}" class="img-thumbnail">
                             <a>
                                 <div class="mask"></div>
                             </a>
@@ -557,7 +561,7 @@
 
                         <!--Featured image-->
                         <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo3">
-                            <img src="{% static '/img/eatingroom.JPG' %}" class="img-thumbnail">
+                            <img src="{% static '/img/eatingroom.jpg' %}" class="img-thumbnail">
                             <a>
                                 <div class="mask"></div>
                             </a>
@@ -583,7 +587,7 @@
 
                         <!--Featured image-->
                         <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo4">
-                            <img src="{% static 'img/outerview.JPG' %}" class="img-thumbnail">
+                            <img src="{% static 'img/outerview.jpg' %}" class="img-thumbnail">
                             <a>
                                 <div class="mask"></div>
                             </a>
@@ -602,7 +606,7 @@
 
                         <!--Featured image-->
                         <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo5">
-                            <img src="{% static 'img/accessories.JPG' %}" class="img-thumbnail">
+                            <img src="{% static 'img/accessories.jpg' %}" class="img-thumbnail">
                             <a>
                                 <div class="mask"></div>
                             </a>
@@ -621,7 +625,7 @@
 
                         <!--Featured image-->
                         <div class="view overlay hm-white-slight z-depth-1" data-toggle="modal" data-target="#photo6">
-                            <img src="{% static "img/total_view.JPG" %}" class="img-thumbnail">
+                            <img src="{% static "img/total_view.jpg" %}" class="img-thumbnail">
                             <a>
                                 <div class="mask"></div>
                             </a>
@@ -846,7 +850,7 @@ $('#reserve_date_end').MdPersianDateTimePicker({
             data:{"start_date":date_start.val(),"stop_date":date_stop.val(),csrfmiddlewaretoken: '{{ csrf_token }}',bednumber:$("#bednumber").val()},
             success:function(result){
             console.log("Success");
-            toastr.success("OK");
+            toastr.success("پیدا شد");
             console.log(result);
             var event_data = '';
             $.each(result,function(index,value){
@@ -858,13 +862,14 @@ $('#reserve_date_end').MdPersianDateTimePicker({
                 event_data += '</tr>';
 
             });
-            $("#dthotel_choose").append(event_data);
+            $("#dthotel_choose").html(event_data);
+
             // Must return false to Not submit form
             return true;
         },
         error:function(){
             console.log("FAILED");
-            toastr.error("ERROR");
+            toastr.error("پیدا نشد");
 
             return false;
         

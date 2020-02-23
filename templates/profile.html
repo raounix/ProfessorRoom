@@ -16,8 +16,8 @@
       <div class="md-form">
           <form name="edit_profile" method="post" action="/edit_profile" enctype="multipart/form-data" id="edit_profile">
               {% csrf_token %}
-  <input type="text" id="username" class="form-control" name="username" disabled>
-  <label for="username">نام کاربری</label>
+  <input type="text" id="username" class="form-control" name="username" >
+              <label for="username">نام کاربری</label>
               <input type="text" id="firstname" class="form-control" name="firstname" value="{{ myuser.user.first_name }}">
               <label for="firstname">نام</label>
               <input type="text" id="lastname" class="form-control" name="lastname" value="{{ myuser.user.last_name }}">

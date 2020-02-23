@@ -1,0 +1,98 @@
+ {% extends 'admin_dashboard_base.html' %} {% load static %} {% block content %}
+ <main>
+    <div class="container my-5 py-5">
+
+   
+  <!-- Section: Block Content -->
+  <section class="">
+
+    <!--Grid row-->
+
+
+      <!--Grid column-->
+
+        <!-- Admin card -->
+   <div id="show_reserve">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+                <table id="dthotel_choose" class="table table-striped" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                <th class="th-sm">شماره اتاق</th>
+                <th class="th-sm">ظرفیت اتاق</th>
+                <th class="th-sm">قیمت</th>
+                <th class="th-sm"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for x in  reserve_show %}
+                <tr>
+                <td>{{ x.room.no }}</td>
+                <td>{{ x.room.room_type }}</td>
+                <td>{{ x.total_price}}</td>
+
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                </div>
+
+                </div>
+
+    <!--Grid row-->
+
+  </section>
+
+
+  <!--Section: Content-->
+
+
+</div>
+
+</main>
+{% endblock %}
+
+
+
+
+
+
+
+ {% block script %}
+<script>
+function edit_profile(){
+    document.getElementById('edit_profile').submit();
+}
+function change_password(){
+    document.getElementById('change_password').submit();
+}
+// Material Select Initialization
+</script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+
+<!-- Bootstrap -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+
+<!-- Material Design for Bootstrap -->
+<script src="{% static 'js/mdb.min.js' %}"></script>
+<script src="{% static 'js/addons/datatables.min.js' %}"></script>
+<script>
+    $('#dt-material-checkbox').dataTable({
+
+        columnDefs: [{
+            orderable: false,
+            className: 'select-checkbox',
+            targets: 0
+        }],
+        select: {
+            style: 'os',
+            selector: 'td:first-child'
+        }
+    });
+</script>
+
+{% endblock %}
+{% block image %}
+    <a href="#" class="dropdown-item"><img src="{{ myuser.profile }}" class="img-thumbnail"></a>
+{% endblock %}

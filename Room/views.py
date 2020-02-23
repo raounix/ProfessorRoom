@@ -13,7 +13,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMessage
 from django.contrib import messages
 from .models import *
-from datetime import datetime
+from datetime import datetime,timedelta,timezone
 import json
 from django.core import serializers
 def signup(request):
@@ -148,15 +148,29 @@ def dashboard_room_view(request):
 	
 
 def reserve(request):
-    # startdate=request.POST.get('reserve_date_start')
-    # stopdate=request.POST.get('reserve_date_end')
-    print(request.POST)
+    startdate=request.POST.get('start_date')
+    stopdate=request.POST.get('stop_date')
     bednumber=request.POST.get('bednumber')
     all_rooms = Room.objects.filter(room_type=bednumber)
-
-
-    # startday=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").day
-    # startmonth=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").month
+    all_reserves = Reserve.objects.filter(bednumber=bednumber)
+    my_list = [] # کل رزرو‌ها
+    eligble_rooms = [] #اتاق های پیشنهادی
+    for x in all_rooms:
+      eligble_rooms.append(x.no)
+    for item in all_reserves:
+      my_list.append({"room_number":item.room.no,"start_time":item.start_time,"end_time":item.end_time})
+    print(my_list)
+    print(eligble_rooms)
+    start_date = datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z")
+    stop_date = datetime.strptime(stopdate, "%a, %d %b %Y %H:%M:%S %Z")
+    delta = (stop_date) - (start_date)
+    for i in range(delta.days + 1):
+      day = start_date + timedelta(days=i)
+      for myitem in my_list:
+        if(myitem['start_time']<day.date()<myitem['end_time']):
+          eligble_rooms.remove(myitem['room_number'])
+    dest_room = Room.objects.filter(no__in=eligble_rooms)
+    
 
     # startyear=datetime.strptime(startdate, "%a, %d %b %Y %H:%M:%S %Z").year
     
@@ -177,6 +191,20 @@ def reserve(request):
 
     # return HttpResponse("Captain")
     # return render(request, "home.html", {"notification_type": "error","rooms_returned":all_rooms,"notification":"اتاقی با مشخصات زیر قابل رزرو نیست "})
-    data = serializers.serialize('json',all_rooms)
+    data = serializers.serialize('json',dest_room)
     return HttpResponse(data,content_type="application/json")
-    """return HttpResponse("Captain")"""
+
+
+def show_reserve(request):
+
+      if request.user.is_authenticated:
+
+          reserve = Reserve.objects.all()
+          print(reserve[0])
+
+          return render(request, "reserves.html", {"reserve_show": reserve})
+      else:
+          return HttpResponse(content="access denied")
+      
+
+
