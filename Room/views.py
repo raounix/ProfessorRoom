@@ -15,7 +15,12 @@ from django.contrib import messages
 from .models import *
 from datetime import datetime,timedelta,timezone
 import json
+import requests
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
+
+room_numbers = 0
+
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -207,4 +212,25 @@ def show_reserve(request):
           return HttpResponse(content="access denied")
       
 
+@csrf_exempt
+def payment_page(request):
 
+
+  if  (request.method=="POST"):
+    room_number = request.POST.get('number')
+    
+    return render(request,"payment_detail.html",{"room_number":room_number})
+
+  else:
+    return HttpResponse("Not Allowed")
+
+
+@csrf_exempt
+def sadad(request):
+  url = 'http://178.253.27.247/Send.php'
+  room_number = request.POST.get('room_number')
+  myobj = {'amount': room_number,'order_id':5555885}
+
+  x = requests.post(url, data = myobj)
+  return redirect(x.url)
+  

@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^logout/$',views.logout_view,name="logout"),
     url(r'^reserve/$',views.reserve,name="reserve"),
     url(r'^show_reserve/$',views.show_reserve,name="show_reserve"),
-
+    url(r'^payment_page/$',views.payment_page,name="payment_page"),
+    url(r'^sadad/$',views.sadad,name="sadad"),
 
 ]

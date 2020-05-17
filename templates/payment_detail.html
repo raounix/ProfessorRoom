@@ -1,0 +1,27 @@
+<body>
+
+    سلام شما اتاق شماره ی {{ room_number }} را انتخاب کردید . اگر از انتخاب مطمئن هستید به صفحه ی خرید بروید
+
+
+    <button onclick="return sadadfunc({{room_number}})"></button>
+</body>
+
+
+<script>
+    function sadadfunc(room_number) {
+
+        var form = document.createElement('form');
+        form.style.visibility = 'hidden'; // no user interaction is necessary
+        form.method = 'POST'; // forms by default use GET query strings
+        form.action = '/sadad/';
+
+        var input = document.createElement('input');
+        input.name = "room_number";
+        input.id = "room_number";
+        input.value = room_number
+        form.appendChild(input); // add key/value pair to form
+
+        document.body.appendChild(form); // forms cannot be submitted outside of body
+        form.submit(); // send the payload and navigate
+    }
+</script>
